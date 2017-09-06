@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<CommandTable xmlns="http://schemas.microsoft.com/VisualStudio/2005-10-18/CommandTable" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <Extern href="stdidcmd.h" />
+  <Extern href="vsshlids.h" />
+  <Commands package="guidPackage">
+    <Groups>
+      <Group guid="guidMenuGroup" id="idRecentFiles" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CSCD_FILEMRU" />
+      </Group>
+      <Group guid="guidMenuGroup" id="idRecentProjects" priority="0x0600">
+        <Parent guid="guidSHLMainMenu" id="IDM_VS_CSCD_PROJMRU" />
+      </Group>
+    </Groups>
+    <Buttons>
+      <Button guid="guidMenuGroup" id="idClearAllRecentFiles" priority="0x0100" type="Button">
+        <Parent guid="guidMenuGroup" id="idRecentFiles" />
+        <Strings>
+          <ButtonText>Clear all Recent Files</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidMenuGroup" id="idClearMissingRecentFiles" priority="0x0101" type="Button">
+        <Parent guid="guidMenuGroup" id="idRecentFiles" />
+        <Strings>
+          <ButtonText>Clear missing Recent Files</ButtonText>
+        </Strings>
+      </Button>      
+      <Button guid="guidMenuGroup" id="idClearAllRecentProjects" priority="0x0100" type="Button">
+        <Parent guid="guidMenuGroup" id="idRecentProjects" />
+        <Strings>
+          <ButtonText>Clear all Recent Projects</ButtonText>
+        </Strings>
+      </Button>
+      <Button guid="guidMenuGroup" id="idClearMissingRecentProjects" priority="0x0101" type="Button">
+        <Parent guid="guidMenuGroup" id="idRecentProjects" />
+        <Strings>
+          <ButtonText>Clear missing Recent Projects</ButtonText>
+        </Strings>
+      </Button>
+    </Buttons>
+  </Commands>
+  <Symbols>
+    <GuidSymbol name="guidPackage" value="{8d830e69-c15d-4d14-bf3b-5514a5fb560b}" />
+    <GuidSymbol name="guidMenuGroup" value="{f04cc4c1-8a09-4fd8-a80f-a73ca659c1e6}">
+      <IDSymbol name="idRecentFiles" value="0x1020" />
+      <IDSymbol name="idRecentProjects" value="0x1021" />
+      <IDSymbol name="idClearAllRecentFiles" value="0x0100" />
+      <IDSymbol name="idClearMissingRecentFiles" value="0x0101" />
+      <IDSymbol name="idClearAllRecentProjects" value="0x0102" />
+      <IDSymbol name="idClearMissingRecentProjects" value="0x0103" />
+    </GuidSymbol>
+  </Symbols>
+</CommandTable>
