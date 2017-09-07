@@ -9,7 +9,7 @@ namespace ClearRecent.Commands
             base(package, 0x0102)
         { }
 
-        protected override void MenuItemCallback(object sender, EventArgs e)
-        { }
+        protected override void MenuItemCallback(object sender, EventArgs e) =>
+            fileMenuRecents.ClearAllProjects();
     }
 }
