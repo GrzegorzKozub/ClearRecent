@@ -8,12 +8,16 @@ namespace ClearRecent.Commands
     internal abstract class Command
     {
         private readonly IServiceProvider serviceProvider;
+
         protected readonly FileMenuRecents fileMenuRecents;
+        protected readonly StartPageRecents startPageRecents;
 
         protected Command(Package package, int commandId)
         {
             serviceProvider = package ?? throw new ArgumentNullException(nameof(package));
+
             fileMenuRecents = new FileMenuRecents(serviceProvider);
+            startPageRecents = new StartPageRecents(serviceProvider);
 
             if (serviceProvider.GetService(typeof(IMenuCommandService)) is OleMenuCommandService commandService)
             {
