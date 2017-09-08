@@ -7,33 +7,33 @@ namespace ClearRecent.Services
     internal class FileMenuRecents
     {
         private readonly IServiceProvider serviceProvider;
-        private readonly TypeFactory typeFactory;
+        private readonly Types types;
         private readonly Files files;
 
         internal FileMenuRecents(IServiceProvider serviceProvider)
         {
             this.serviceProvider = serviceProvider;
-            typeFactory = new TypeFactory();
+            types = new Types();
             files = new Files();
         }
 
-        internal void ClearAllFiles() => Clear(RecentKind.File);
-        internal void ClearAllProjects() => Clear(RecentKind.Project);
+        internal void ClearAllFiles() => Clear(Kind.File);
+        internal void ClearAllProjects() => Clear(Kind.Project);
 
         internal void ClearMissingFiles() =>
-            Clear(RecentKind.File, onlyMissing: true);
+            Clear(Kind.File, onlyMissing: true);
 
         internal void ClearMissingProjects() =>
-            Clear(RecentKind.Project, onlyMissing: true);
+            Clear(Kind.Project, onlyMissing: true);
 
-        private void Clear(RecentKind kind, bool onlyMissing = false)
+        private void Clear(Kind kind, bool onlyMissing = false)
         {
             var dataSource = GetDataSource(kind);
             var recents = GetRecents(dataSource, kind);
 
             if (recents.Count == 0) { return; }
 
-            var remove = typeFactory.GetRemoveItemAtMethod(kind);
+            var remove = types.GetRemoveItemAtMethod(kind);
 
             for (var i = recents.Count - 1; i > -1; i--)
             {
@@ -45,7 +45,7 @@ namespace ClearRecent.Services
             }
         }
 
-        private IVsUIDataSource GetDataSource(RecentKind kind)
+        private IVsUIDataSource GetDataSource(Kind kind)
         {
             var factory = serviceProvider.GetService(typeof(SVsDataSourceFactory)) as IVsDataSourceFactory;
 
@@ -57,13 +57,13 @@ namespace ClearRecent.Services
             return dataSource;
         }
 
-        private IList GetRecents(IVsUIDataSource dataSource, RecentKind kind) =>
-            typeFactory
+        private IList GetRecents(IVsUIDataSource dataSource, Kind kind) =>
+            types
                 .GetItemsProp(kind)
                 .GetValue(dataSource, null) as IList;
 
         private string GetPath(object recent) =>
-            typeFactory
+            types
                 .GetPathProp()
                 .GetValue(recent, null) as string;
     }

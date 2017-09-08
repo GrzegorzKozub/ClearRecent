@@ -3,18 +3,18 @@ using System.Reflection;
 
 namespace ClearRecent.Services
 {
-    internal class TypeFactory
+    internal class Types
     {
-        internal PropertyInfo GetItemsProp(RecentKind kind) =>
+        internal PropertyInfo GetItemsProp(Kind kind) =>
             CreateMruListType(kind).GetProperty("Items");
 
-        internal MethodInfo GetRemoveItemAtMethod(RecentKind kind) =>
+        internal MethodInfo GetRemoveItemAtMethod(Kind kind) =>
             CreateMruListType(kind).GetMethod("RemoveItemAt");
 
         internal PropertyInfo GetPathProp() =>
             CreateType("FileSystemMruItem").GetProperty("Path");
 
-        private static Type CreateMruListType(RecentKind kind)
+        private static Type CreateMruListType(Kind kind)
         {
             return CreateType($"{kind.ToString()}MruList");
         }
