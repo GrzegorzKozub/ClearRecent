@@ -11,14 +11,20 @@ namespace ClearRecent.Services
         internal MethodInfo GetRemoveItemAtMethod(RecentKind kind) =>
             CreateMruListType(kind).GetMethod("RemoveItemAt");
 
-        private Type CreateMruListType(RecentKind kind)
+        internal PropertyInfo GetPathProp() =>
+            CreateType("FileSystemMruItem").GetProperty("Path");
+
+        private static Type CreateMruListType(RecentKind kind)
+        {
+            return CreateType($"{kind.ToString()}MruList");
+        }
+
+        private static Type CreateType(string name)
         {
             const string Namespace = "Microsoft.VisualStudio.PlatformUI";
             const string Assembly = "Microsoft.VisualStudio.Shell.UI.Internal";
 
-            return Type.GetType(
-                $"{Namespace}.{kind.ToString()}MruList, {Assembly}",
-                true);
+            return Type.GetType($"{Namespace}.{name}, {Assembly}", true);
         }
     }
 }
