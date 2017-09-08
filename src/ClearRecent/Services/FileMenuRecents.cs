@@ -60,11 +60,11 @@ namespace ClearRecent.Services
         private IList GetRecents(IVsUIDataSource dataSource, Kind kind) =>
             types
                 .GetItemsProp(kind)
-                .GetValue(dataSource, null) as IList;
+                .GetValue(dataSource, index: null) as IList;
 
         private string GetPath(object recent) =>
             types
                 .GetPathProp()
-                .GetValue(recent, null) as string;
+                .GetValue(recent, index: null) as string;
     }
 }

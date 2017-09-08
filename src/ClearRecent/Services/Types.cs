@@ -24,7 +24,9 @@ namespace ClearRecent.Services
             const string Namespace = "Microsoft.VisualStudio.PlatformUI";
             const string Assembly = "Microsoft.VisualStudio.Shell.UI.Internal";
 
-            return Type.GetType($"{Namespace}.{name}, {Assembly}", true);
+            return Type.GetType(
+                $"{Namespace}.{name}, {Assembly}",
+                throwOnError: true);
         }
     }
 }
