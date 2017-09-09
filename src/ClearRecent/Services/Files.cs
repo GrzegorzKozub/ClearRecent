@@ -4,9 +4,7 @@ namespace ClearRecent.Services
 {
     internal class Files
     {
-        internal bool Missing(string path)
-        {
-            return !File.Exists(path);
-        }
+        internal bool Missing(string path) =>
+            !File.Exists(path) && !Directory.Exists(path);
     }
 }
