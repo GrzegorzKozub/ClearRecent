@@ -1,9 +1,9 @@
-﻿using Microsoft.VisualStudio.Settings;
-using Microsoft.VisualStudio.Shell.CodeContainerManagement;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
+using Microsoft.VisualStudio.Settings;
+using Microsoft.VisualStudio.Shell.CodeContainerManagement;
 
 namespace ClearRecent.Services
 {
@@ -18,10 +18,10 @@ namespace ClearRecent.Services
             files = new Files();
         }
 
-        internal void ClearAllProjects() => Clear();
-        internal void ClearMissingProjects() => Clear(onlyMissing: true);
+        internal void ClearAllProjects() => Clear(_ => true);
+        internal void ClearMissingProjects() => Clear(files.Missing);
 
-        private void Clear(bool onlyMissing = false)
+        private void Clear(Func<string, bool> shouldDelete)
         {
             var manager = GetManager();
             var recents = GetRecents(manager);
@@ -32,10 +32,7 @@ namespace ClearRecent.Services
 
             foreach (var path in recents)
             {
-                if (!onlyMissing || files.Missing(path))
-                {
-                    registry.RemoveAsync(path);
-                }
+                if (shouldDelete(path)) { registry.RemoveAsync(path); }
             }
         }
 

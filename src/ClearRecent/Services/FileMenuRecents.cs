@@ -17,16 +17,16 @@ namespace ClearRecent.Services
             files = new Files();
         }
 
-        internal void ClearAllFiles() => Clear(Kind.File);
-        internal void ClearAllProjects() => Clear(Kind.Project);
+        internal void ClearAllFiles() => Clear(Kind.File, _ => true);
+        internal void ClearAllProjects() => Clear(Kind.Project, _ => true);
 
         internal void ClearMissingFiles() =>
-            Clear(Kind.File, onlyMissing: true);
+            Clear(Kind.File, files.Missing);
 
         internal void ClearMissingProjects() =>
-            Clear(Kind.Project, onlyMissing: true);
+            Clear(Kind.Project, files.Missing);
 
-        private void Clear(Kind kind, bool onlyMissing = false)
+        private void Clear(Kind kind, Func<string, bool> shouldDelete)
         {
             var dataSource = GetDataSource(kind);
             var recents = GetRecents(dataSource, kind);
@@ -37,11 +37,8 @@ namespace ClearRecent.Services
 
             for (var i = recents.Count - 1; i > -1; i--)
             {
-                if (!onlyMissing
-                    || files.Missing(GetPath(recents[i])))
-                {
-                    remove.Invoke(dataSource, new object[] { i });
-                }
+                if (shouldDelete(GetPath(recents[i])))
+                { remove.Invoke(dataSource, new object[] { i }); }
             }
         }
 
