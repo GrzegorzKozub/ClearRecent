@@ -15,25 +15,25 @@
       <Button guid="guidMenuGroup" id="idClearAllRecentFiles" priority="0x0100" type="Button">
         <Parent guid="guidMenuGroup" id="idRecentFiles" />
         <Strings>
-          <ButtonText>Clear all Recent Files</ButtonText>
+          <ButtonText>Clear all</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidMenuGroup" id="idClearMissingRecentFiles" priority="0x0101" type="Button">
         <Parent guid="guidMenuGroup" id="idRecentFiles" />
         <Strings>
-          <ButtonText>Clear missing Recent Files</ButtonText>
+          <ButtonText>Clear missing</ButtonText>
         </Strings>
       </Button>      
       <Button guid="guidMenuGroup" id="idClearAllRecentProjects" priority="0x0100" type="Button">
         <Parent guid="guidMenuGroup" id="idRecentProjects" />
         <Strings>
-          <ButtonText>Clear all Recent Projects</ButtonText>
+          <ButtonText>Clear all</ButtonText>
         </Strings>
       </Button>
       <Button guid="guidMenuGroup" id="idClearMissingRecentProjects" priority="0x0101" type="Button">
         <Parent guid="guidMenuGroup" id="idRecentProjects" />
         <Strings>
-          <ButtonText>Clear missing Recent Projects</ButtonText>
+          <ButtonText>Clear missing</ButtonText>
         </Strings>
       </Button>
     </Buttons>

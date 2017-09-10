@@ -1,15 +1,17 @@
-﻿using System;
-using Microsoft.VisualStudio.Shell;
+﻿using Microsoft.VisualStudio.Shell;
 
 namespace ClearRecent.Commands
 {
     internal sealed class ClearAllRecentFiles : Command
     {
         internal ClearAllRecentFiles(Package package) :
-            base(package, 0x0100)
+            base(
+                package,
+                0x0100,
+                "Remove all Recent Files from File menu?")
         { }
 
-        protected override void MenuItemCallback(object sender, EventArgs e) =>
+        protected override void Execute() =>
             fileMenuRecents.ClearAllFiles();
     }
 }
