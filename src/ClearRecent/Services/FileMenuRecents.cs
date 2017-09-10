@@ -17,6 +17,9 @@ namespace ClearRecent.Services
             files = new Files();
         }
 
+        internal bool FilesFound() => Found(Kind.File);
+        internal bool ProjectsFound() => Found(Kind.Project);
+
         internal void ClearAllFiles() => Clear(Kind.File, _ => true);
         internal void ClearAllProjects() => Clear(Kind.Project, _ => true);
 
@@ -25,6 +28,9 @@ namespace ClearRecent.Services
 
         internal void ClearMissingProjects() =>
             Clear(Kind.Project, files.Missing);
+
+        private bool Found(Kind kind) =>
+            GetCount(GetDataSource(kind), kind) > 0;
 
         private void Clear(Kind kind, Func<string, bool> shouldDelete)
         {
@@ -53,6 +59,11 @@ namespace ClearRecent.Services
 
             return dataSource;
         }
+
+        private int GetCount(IVsUIDataSource dataSource, Kind kind) =>
+            (int)types
+                .GetCountProp(kind)
+                .GetValue(dataSource, index: null);
 
         private IList GetRecents(IVsUIDataSource dataSource, Kind kind) =>
             types

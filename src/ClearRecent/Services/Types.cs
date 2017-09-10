@@ -5,6 +5,9 @@ namespace ClearRecent.Services
 {
     internal class Types
     {
+        internal PropertyInfo GetCountProp(Kind kind) =>
+            CreateMruListType(kind).GetProperty("Count");
+
         internal PropertyInfo GetItemsProp(Kind kind) =>
             CreateMruListType(kind).GetProperty("Items");
 

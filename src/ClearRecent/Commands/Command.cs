@@ -30,15 +30,18 @@ namespace ClearRecent.Commands
             if (serviceProvider.GetService(typeof(IMenuCommandService)) is OleMenuCommandService commandService)
             {
                 commandService.AddCommand(
-                    new MenuCommand(
-                        Handle,
+                    new OleMenuCommand(
+                        Invoke,
+                        null,
+                        Prepare,
                         new CommandID(Guids.MenuGroup, commandId)));
             }
         }
 
-        protected abstract void Execute();
+        private void Prepare(object sender, EventArgs e) =>
+            ((OleMenuCommand)sender).Enabled = Enabled();
 
-        private void Handle(object sender, EventArgs e)
+        private void Invoke(object sender, EventArgs e)
         {
             if (VsShellUtilities.ShowMessageBox(
                     serviceProvider,
@@ -49,5 +52,9 @@ namespace ClearRecent.Commands
                     OLEMSGDEFBUTTON.OLEMSGDEFBUTTON_FIRST) == 6)
             { Execute(); }
         }
+
+        protected abstract bool Enabled();
+
+        protected abstract void Execute();
     }
 }

@@ -11,6 +11,9 @@ namespace ClearRecent.Commands
                 "Remove Recent Projects and Solutions not found on disk from File menu and Start Page?")
         { }
 
+        protected override bool Enabled() =>
+            fileMenuRecents.ProjectsFound() || startPageRecents.ProjectsFound();
+
         protected override void Execute()
         {
             fileMenuRecents.ClearMissingProjects();

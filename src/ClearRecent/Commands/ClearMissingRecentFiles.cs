@@ -11,6 +11,9 @@ namespace ClearRecent.Commands
                 "Remove Recent Files not found on disk from File menu?")
         { }
 
+        protected override bool Enabled() =>
+            fileMenuRecents.FilesFound();
+
         protected override void Execute() =>
             fileMenuRecents.ClearMissingFiles();
     }

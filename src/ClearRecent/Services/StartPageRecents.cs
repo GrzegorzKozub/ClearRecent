@@ -18,6 +18,9 @@ namespace ClearRecent.Services
             files = new Files();
         }
 
+        internal bool ProjectsFound() =>
+            GetRecents(GetManager()).Count > 0;
+
         internal void ClearAllProjects() => Clear(_ => true);
         internal void ClearMissingProjects() => Clear(files.Missing);
 

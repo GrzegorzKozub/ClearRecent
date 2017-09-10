@@ -11,6 +11,9 @@ namespace ClearRecent.Commands
                 "Remove all Recent Projects and Solutions from File menu and Start Page?")
         { }
 
+        protected override bool Enabled() =>
+            fileMenuRecents.ProjectsFound() || startPageRecents.ProjectsFound();
+
         protected override void Execute()
         {
             fileMenuRecents.ClearAllProjects();

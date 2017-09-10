@@ -11,6 +11,9 @@ namespace ClearRecent.Commands
                 "Remove all Recent Files from File menu?")
         { }
 
+        protected override bool Enabled() =>
+            fileMenuRecents.FilesFound();
+
         protected override void Execute() =>
             fileMenuRecents.ClearAllFiles();
     }
