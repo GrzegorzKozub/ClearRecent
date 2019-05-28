@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
     <Metadata>
-        <Identity Id="ClearRecent.a058d6db-b626-4d1b-8b98-da97e2e63561" Version="1.1.0" Language="en-US" Publisher="Grzegorz Kozub" />
+        <Identity Id="ClearRecent.a058d6db-b626-4d1b-8b98-da97e2e63561" Version="1.1.1" Language="en-US" Publisher="Grzegorz Kozub" />
         <DisplayName>Clear Recent</DisplayName>
         <Description xml:space="preserve">Clears recent files and projects lists. Handles menu and start page. Removes all items or just those missing from file system. Adds commands and items to File menu.</Description>
         <Icon>icon.png</Icon>
@@ -16,7 +16,7 @@
         <Dependency Id="Microsoft.VisualStudio.MPF.15.0" DisplayName="Visual Studio MPF 15.0" d:Source="Installed" Version="[15.0]" />
     </Dependencies>
     <Prerequisites>
-        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[16.0.28315.86,17.0)" DisplayName="Visual Studio core editor" />
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,17.0)" DisplayName="Visual Studio core editor" />
     </Prerequisites>
     <Assets>
         <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="%CurrentProject%" Path="|%CurrentProject%;PkgdefProjectOutputGroup|" />

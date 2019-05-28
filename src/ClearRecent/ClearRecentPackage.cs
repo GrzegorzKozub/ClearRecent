@@ -9,7 +9,7 @@ using Microsoft.VisualStudio.Shell;
 namespace ClearRecent
 {
     [Guid(Guids.Package)]
-    [InstalledProductRegistration("#110", "#112", "1.1.0", IconResourceID = 400)]
+    [InstalledProductRegistration("#110", "#112", "1.1.1", IconResourceID = 400)]
     [PackageRegistration(UseManagedResourcesOnly = true, AllowsBackgroundLoading = true)]
     [ProvideAutoLoad(VSConstants.UICONTEXT.ShellInitialized_string, PackageAutoLoadFlags.BackgroundLoad)]
     [ProvideMenuResource("Menus.ctmenu", 1)]
